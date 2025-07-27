@@ -37,6 +37,10 @@ body {
     text-decoration: none;
 }
 
+.nav-logo img {
+    max-height: 80px;
+}
+
 .nav-menu {
     display: flex;
     list-style: none;
@@ -109,6 +113,26 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     text-align: center;
+}
+
+.content-with-image {
+    display: flex;
+    align-items: center;
+    padding: 50px 5%;
+    gap: 20px;
+}
+
+.text-content {
+    flex: 2;
+}
+
+.side-image {
+    flex: 1;
+}
+
+.side-image img {
+    max-width: 100%;
+    border-radius: 8px;
 }
 
 /* Advocacy Page */
