@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found</title>
+  <script>
+    // Redirect to the root path which will be handled by the SPA router
+    sessionStorage.redirect = location.href;
+    const path = location.pathname.split('/').slice(0, -1).join('/');
+    location.href = path + '/?' + (new Date()).getTime();
+  </script>
+</head>
+<body>
+  <p>Redirecting to home page...</p>
+</body>
+</html>
