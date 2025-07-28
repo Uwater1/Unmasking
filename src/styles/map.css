@@ -88,6 +88,136 @@
   border: 1px solid #e0e0e0;
 }
 
+/* Footer styles */
+.app-footer {
+  background: #2c3e50;
+  color: white;
+  padding: 3rem 0 0;
+  margin-top: 4rem;
+  position: relative;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+}
+
+.contact-section {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.contact-section h3 {
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.contact-section h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: #3498db;
+  border-radius: 3px;
+}
+
+.contact-section p {
+  margin: 0.75rem 0;
+  color: #ecf0f1;
+  line-height: 1.6;
+}
+
+.contact-section a {
+  color: #3498db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-section a:hover {
+  color: #5dade2;
+  text-decoration: underline;
+}
+
+.social-media {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.social-media a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.social-media a:hover {
+  background: #3498db;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.social-media img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
+
+.copyright {
+  text-align: center;
+  padding: 1.5rem 0;
+  margin: 0;
+  color: #bdc3c7;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+  .social-media {
+    position: static;
+    justify-content: flex-start;
+    margin: 1.5rem 0 0;
+  }
+  
+  .contact-section {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    text-align: center;
+  }
+  
+  .contact-section h3::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .social-media {
+    justify-content: center;
+  }
+}
+
 /* Health recommendations */
 .health-recommendations {
   margin: 15px 0;

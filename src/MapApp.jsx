@@ -1,5 +1,5 @@
 import React from 'react';
-import CanadaMap from './components/Map/CanadaMap';
+import TestComponent from './components/TestComponent';
 import './styles/map.css';
 
 function MapApp() {
@@ -19,13 +19,29 @@ function MapApp() {
             <p>Click on any electoral district to see information about your MP and local air quality data.</p>
           </div>
           <div className="map-container">
-            <CanadaMap />
+            <TestComponent />
           </div>
         </section>
       </main>
       
       <footer className="app-footer">
-        <p>© {new Date().getFullYear()} Unmasking Lung Cancer. All rights reserved.</p>
+        <div className="footer-content">
+          <div className="contact-section">
+            <h3>Contact Us</h3>
+            <p>210 6111 36 ST SE, Calgary, Alberta, T2C 3W</p>
+            <p>Email: <a href="mailto:Unmaskinglungcancercalgary@gmail.com">Unmaskinglungcancercalgary@gmail.com</a></p>
+            <p>Phone: 403 801 5000</p>
+          </div>
+          <div className="social-media">
+            <a href="https://www.facebook.com/UnmaskingC/" target="_blank" rel="noopener noreferrer">
+              <img src="/facebook.png" alt="Facebook" />
+            </a>
+            <a href="https://www.linkedin.com/company/unmasking-the-reality-of-lung-cancer/" target="_blank" rel="noopener noreferrer">
+              <img src="/linkedin.png" alt="LinkedIn" />
+            </a>
+          </div>
+          <p className="copyright">© {new Date().getFullYear()} Unmasking Lung Cancer. All rights reserved.</p>
+        </div>
       </footer>
     </div>
   );

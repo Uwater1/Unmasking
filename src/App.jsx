@@ -6,6 +6,7 @@ import './App.css';
 import Home from './pages/Home';
 import Advocacy from './pages/Advocacy';
 import Founder from './pages/Founder';
+import MapApp from './MapApp';
 import Footer from './components/Footer';
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
                 <a href="#community" className="nav-link">Community</a>
               </li>
               <li className="nav-item">
-                <a href="#contact" className="nav-link">Contact</a>
+                <Link to="/map" className="nav-link">Map</Link>
               </li>
             </ul>
             <div className="hamburger">
@@ -50,6 +51,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/advocacy" element={<Advocacy />} />
             <Route path="/founder" element={<Founder />} />
+            <Route path="/map" element={<MapApp />} />
             <Route path="/patient-hub" element={<div>Patient & Caregiver Hub - Coming Soon</div>} />
             <Route path="/research" element={<div>Research - Coming Soon</div>} />
             <Route path="*" element={<div>Page Not Found</div>} />
