@@ -12,8 +12,12 @@ function Footer() {
       <div className="footer-bottom">
         <p>&copy; {new Date().getFullYear()} Unmasking the Reality of Lung Cancer. All rights reserved.</p>
         <div className="social-media">
-          <a href="https://www.facebook.com/UnmaskingC/" target="_blank" rel="noopener noreferrer">Facebook</a>
-          <a href="https://www.linkedin.com/company/unmasking-the-reality-of-lung-cancer/?originalSubdomain=ca" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.facebook.com/UnmaskingC/" target="_blank" rel="noopener noreferrer">
+            <img src="/facebook.png" alt="Facebook" />
+          </a>
+          <a href="https://www.linkedin.com/company/unmasking-the-reality-of-lung-cancer/?originalSubdomain=ca" target="_blank" rel="noopener noreferrer">
+            <img src="/linkedin.png" alt="LinkedIn" />
+          </a>
         </div>
       </div>
     </footer>

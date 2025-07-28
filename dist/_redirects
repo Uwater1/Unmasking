@@ -1,1 +1,12 @@
-/* /index.html 200
+/index.html    /index.html   200
+/patient-hub  /index.html   200
+/advocacy     /index.html   200
+/research     /index.html   200
+/founder      /index.html   200
+/*            /index.html   404
+
+# Cache static assets for 1 year
+/assets/*  /assets/:splat  200  Cache-Control: public, max-age=31536000, immutable
+
+# Handle 404s
+/404.html  /404.html  404
