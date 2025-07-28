@@ -1,0 +1,239 @@
+/* Add these styles to your src/styles/map.css file */
+
+/* Party legend styles */
+.party-legend {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 1000;
+  min-width: 140px;
+}
+
+.party-legend h4 {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  color: #333;
+  font-weight: 600;
+}
+
+.party-item {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  font-size: 12px;
+}
+
+.party-color {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  border-radius: 3px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Close panel button */
+.close-panel {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.close-panel:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+/* Pollutant data grid */
+.pollutant-data {
+  margin: 15px 0;
+  padding: 10px;
+  background: #e8f4f8;
+  border-radius: 6px;
+}
+
+.pollutant-data h4 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  color: #2c5aa0;
+}
+
+.pollutant-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.pollutant-grid span {
+  background: white;
+  padding: 6px 8px;
+  border-radius: 4px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+}
+
+/* Health recommendations */
+.health-recommendations {
+  margin: 15px 0;
+  padding: 12px;
+  background: #fff8e1;
+  border-radius: 6px;
+  border-left: 4px solid #ffc107;
+}
+
+.health-recommendations h4 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  color: #e65100;
+}
+
+.health-recommendations p {
+  margin: 8px 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* Air quality error state */
+.air-quality-error {
+  text-align: center;
+  padding: 20px;
+  background: #ffebee;
+  border-radius: 6px;
+  color: #c62828;
+}
+
+.air-quality-error p {
+  margin: 5px 0;
+}
+
+/* Additional action buttons */
+.additional-actions {
+  border-top: 1px solid #e9ecef;
+  padding-top: 15px;
+  margin-top: 15px;
+}
+
+/* Enhanced button styles */
+.secondary-button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  flex: 1;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.secondary-button:hover {
+  background: #0056b3;
+  transform: translateY(-1px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .party-legend {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 10px 0;
+    width: 100%;
+  }
+  
+  .canada-map-container {
+    position: relative;
+  }
+  
+  .pollutant-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  
+  .district-info-panel {
+    position: relative;
+    max-height: none;
+  }
+  
+  .close-panel {
+    display: none; /* Hide close button on mobile, use scroll instead */
+  }
+}
+
+/* Enhanced map container for better mobile experience */
+@media (max-width: 1024px) {
+  .canada-map-container {
+    flex-direction: column;
+  }
+  
+  .canada-map {
+    height: 450px !important;
+  }
+  
+  .district-info-panel {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+}
+
+/* Improved focus states for accessibility */
+.advocacy-button:focus,
+.secondary-button:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+/* Enhanced loading state */
+.map-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.map-loading .loading-spinner {
+  width: 40px;
+  height: 40px;
+  border-width: 4px;
+  margin-bottom: 20px;
+}
+
+/* Error state improvements */
+.map-error {
+  text-align: center;
+  padding: 40px 20px;
+  background: #fff3cd;
+  border: 2px solid #ffeaa7;
+  border-radius: 8px;
+  margin: 20px;
+}
+
+.map-error code {
+  background: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  color: #d63384;
+}

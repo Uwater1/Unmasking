@@ -1,0 +1,634 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "FEDNUM": "35001",
+        "ENNAME": "Ajax",
+        "FRNAME": "Ajax",
+        "PROVCODE": "35",
+        "PRENAME": "Ontario"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -79.09,
+              43.83
+            ],
+            [
+              -78.95,
+              43.83
+            ],
+            [
+              -78.95,
+              43.88
+            ],
+            [
+              -79.09,
+              43.88
+            ],
+            [
+              -79.09,
+              43.83
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FEDNUM": "35025",
+        "ENNAME": "Don Valley East",
+        "FRNAME": "Don Valley-Est",
+        "PROVCODE": "35",
+        "PRENAME": "Ontario"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -79.35,
+              43.7
+            ],
+            [
+              -79.25,
+              43.7
+            ],
+            [
+              -79.25,
+              43.78
+            ],
+            [
+              -79.35,
+              43.78
+            ],
+            [
+              -79.35,
+              43.7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FEDNUM": "35063",
+        "ENNAME": "Kitchener Centre",
+        "FRNAME": "Kitchener-Centre",
+        "PROVCODE": "35",
+        "PRENAME": "Ontario"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -80.52,
+              43.43
+            ],
+            [
+              -80.42,
+              43.43
+            ],
+            [
+              -80.42,
+              43.48
+            ],
+            [
+              -80.52,
+              43.48
+            ],
+            [
+              -80.52,
+              43.43
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FEDNUM": "35106",
+        "ENNAME": "Toronto Centre",
+        "FRNAME": "Toronto-Centre",
+        "PROVCODE": "35",
+        "PRENAME": "Ontario"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -79.39,
+              43.64
+            ],
+            [
+              -79.35,
+              43.64
+            ],
+            [
+              -79.35,
+              43.68
+            ],
+            [
+              -79.39,
+              43.68
+            ],
+            [
+              -79.39,
+              43.64
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FEDNUM": "24001",
+        "ENNAME": "Abitibi—Baie-James—Nunavik—Eeyou",
+        "FRNAME": "Abitibi—Baie-James—Nunavik—Eeyou",
+        "PROVCODE": "24",
+        "PRENAME": "Quebec"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -79.5,
+              49
+            ],
+            [
+              -78,
+              49
+            ],
+            [
+              -78,
+              50.5
+            ],
+            [
+              -79.5,
+              50.5
+            ],
+            [
+              -79.5,
+              49
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FEDNUM": "24046",
+        "ENNAME": "Papineau",
+        "FRNAME": "Papineau",
+        "PROVCODE": "24",
+        "PRENAME": "Quebec"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.6,
+              45.54
+            ],
+            [
+              -73.56,
+              45.54
+            ],
+            [
+              -73.56,
+              45.58
+            ],
+            [
+              -73.6,
+              45.58
+            ],
+            [
+              -73.6,
+              45.54
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FEDNUM": "59001",
+        "ENNAME": "Burnaby North—Seymour",
+        "FRNAME": "Burnaby-Nord—Seymour",
+        "PROVCODE": "59",
+        "PRENAME": "British Columbia"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -123.05,
+              49.25
+            ],
+            [
+              -122.95,
+              49.25
+            ],
+            [
+              -122.95,
+              49.35
+            ],
+            [
+              -123.05,
+              49.35
+            ],
+            [
+              -123.05,
+              49.25
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FEDNUM": "59033",
+        "ENNAME": "Vancouver Centre",
+        "FRNAME": "Vancouver-Centre",
+        "PROVCODE": "59",
+        "PRENAME": "British Columbia"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -123.15,
+              49.26
+            ],
+            [
+              -123.1,
+              49.26
+            ],
+            [
+              -123.1,
+              49.3
+            ],
+            [
+              -123.15,
+              49.3
+            ],
+            [
+              -123.15,
+              49.26
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FEDNUM": "48001",
+        "ENNAME": "Banff—Airdrie",
+        "FRNAME": "Banff—Airdrie",
+        "PROVCODE": "48",
+        "PRENAME": "Alberta"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -114.5,
+              51
+            ],
+            [
+              -113.5,
+              51
+            ],
+            [
+              -113.5,
+              52
+            ],
+            [
+              -114.5,
+              52
+            ],
+            [
+              -114.5,
+              51
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FEDNUM": "48012",
+        "ENNAME": "Calgary Centre",
+        "FRNAME": "Calgary-Centre",
+        "PROVCODE": "48",
+        "PRENAME": "Alberta"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -114.1,
+              51.03
+            ],
+            [
+              -114.05,
+              51.03
+            ],
+            [
+              -114.05,
+              51.08
+            ],
+            [
+              -114.1,
+              51.08
+            ],
+            [
+              -114.1,
+              51.03
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FEDNUM": "47001",
+        "ENNAME": "Battlefords—Lloydminster",
+        "FRNAME": "Battlefords—Lloydminster",
+        "PROVCODE": "47",
+        "PRENAME": "Saskatchewan"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -109.5,
+              52.5
+            ],
+            [
+              -108,
+              52.5
+            ],
+            [
+              -108,
+              54
+            ],
+            [
+              -109.5,
+              54
+            ],
+            [
+              -109.5,
+              52.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FEDNUM": "46001",
+        "ENNAME": "Brandon—Souris",
+        "FRNAME": "Brandon—Souris",
+        "PROVCODE": "46",
+        "PRENAME": "Manitoba"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -100.5,
+              49.5
+            ],
+            [
+              -99,
+              49.5
+            ],
+            [
+              -99,
+              50.5
+            ],
+            [
+              -100.5,
+              50.5
+            ],
+            [
+              -100.5,
+              49.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FEDNUM": "12001",
+        "ENNAME": "Avalon",
+        "FRNAME": "Avalon",
+        "PROVCODE": "10",
+        "PRENAME": "Newfoundland and Labrador"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -53.5,
+              47
+            ],
+            [
+              -52.5,
+              47
+            ],
+            [
+              -52.5,
+              47.8
+            ],
+            [
+              -53.5,
+              47.8
+            ],
+            [
+              -53.5,
+              47
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FEDNUM": "11001",
+        "ENNAME": "Cardigan",
+        "FRNAME": "Cardigan",
+        "PROVCODE": "11",
+        "PRENAME": "Prince Edward Island"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -62.5,
+              46.2
+            ],
+            [
+              -62,
+              46.2
+            ],
+            [
+              -62,
+              46.5
+            ],
+            [
+              -62.5,
+              46.5
+            ],
+            [
+              -62.5,
+              46.2
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FEDNUM": "13001",
+        "ENNAME": "Cape Breton—Canso",
+        "FRNAME": "Cape Breton—Canso",
+        "PROVCODE": "12",
+        "PRENAME": "Nova Scotia"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -61,
+              45.5
+            ],
+            [
+              -59.5,
+              45.5
+            ],
+            [
+              -59.5,
+              47
+            ],
+            [
+              -61,
+              47
+            ],
+            [
+              -61,
+              45.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FEDNUM": "13007",
+        "ENNAME": "Halifax",
+        "FRNAME": "Halifax",
+        "PROVCODE": "12",
+        "PRENAME": "Nova Scotia"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -63.7,
+              44.6
+            ],
+            [
+              -63.5,
+              44.6
+            ],
+            [
+              -63.5,
+              44.7
+            ],
+            [
+              -63.7,
+              44.7
+            ],
+            [
+              -63.7,
+              44.6
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FEDNUM": "13010",
+        "ENNAME": "New Brunswick Southwest",
+        "FRNAME": "Nouveau-Brunswick-Sud-Ouest",
+        "PROVCODE": "13",
+        "PRENAME": "New Brunswick"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -67,
+              45
+            ],
+            [
+              -66,
+              45
+            ],
+            [
+              -66,
+              45.5
+            ],
+            [
+              -67,
+              45.5
+            ],
+            [
+              -67,
+              45
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
