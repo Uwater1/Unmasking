@@ -11,11 +11,53 @@ function Footer() {
           <p>Phone: 403 801 5000</p>
           
           <div className="social-media">
-            <a href="https://www.facebook.com/UnmaskingC/" target="_blank" rel="noopener noreferrer">
-              <img src="/facebook.png" alt="Facebook" width="24" height="24" /> 
+            <a href="https://www.facebook.com/UnmaskingC/" target="_blank" rel="noopener noreferrer" style={{
+              display: 'inline-block',
+              width: '40px',
+              height: '40px',
+              padding: '0',
+              margin: '0 0.5rem',
+              backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              borderRadius: '50%',
+              transition: 'background-color 0.3s ease'
+            }}>
+              <img 
+                src="/facebook.png" 
+                alt="Facebook" 
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                  display: 'block',
+                  padding: '0',
+                  margin: '0',
+                  filter: 'invert(1) brightness(2)'
+                }}
+              />
             </a>
-            <a href="https://www.linkedin.com/company/unmasking-the-reality-of-lung-cancer/" target="_blank" rel="noopener noreferrer">
-              <img src="/linkedin.png" alt="LinkedIn" width="24" height="24" />
+            <a href="https://www.linkedin.com/company/unmasking-the-reality-of-lung-cancer/" target="_blank" rel="noopener noreferrer" style={{
+              display: 'inline-block',
+              width: '40px',
+              height: '40px',
+              padding: '0',
+              margin: '0 0.5rem',
+              backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              borderRadius: '50%',
+              transition: 'background-color 0.3s ease'
+            }}>
+              <img 
+                src="/linkedin.png" 
+                alt="LinkedIn" 
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                  display: 'block',
+                  padding: '0',
+                  margin: '0',
+                  filter: 'invert(1) brightness(2)'
+                }}
+              />
             </a>
           </div>
         </div>
