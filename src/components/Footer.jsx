@@ -12,10 +12,10 @@ function Footer() {
           
           <div className="social-media">
             <a href="https://www.facebook.com/UnmaskingC/" target="_blank" rel="noopener noreferrer">
-              <img src="/facebook.png" alt="Facebook" />
+              <img src="/facebook.png" alt="Facebook" width="24" height="24" /> 
             </a>
             <a href="https://www.linkedin.com/company/unmasking-the-reality-of-lung-cancer/" target="_blank" rel="noopener noreferrer">
-              <img src="/linkedin.png" alt="LinkedIn" />
+              <img src="/linkedin.png" alt="LinkedIn" width="24" height="24" />
             </a>
           </div>
         </div>
