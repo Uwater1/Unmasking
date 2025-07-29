@@ -1,4 +1,148 @@
 /* Modern CSS Reset */
+
+/* Footer Styles */
+.footer {
+  background-color: #2d3748;
+  color: white;
+  padding: 2rem 0;
+  margin-top: 4rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.contact-section {
+  margin-bottom: 2rem;
+}
+
+.contact-section h3 {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.contact-section p {
+  color: #e2e8f0;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.contact-section a {
+  color: #90cdf4;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contact-section a:hover {
+  color: #63b3ed;
+  text-decoration: underline;
+}
+
+.social-media {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.social-media a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.social-media a:hover {
+  background-color: var(--primary);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.social-media img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.copyright {
+  text-align: center;
+  color: #a0aec0;
+  font-size: 0.875rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #4a5568;
+  margin-top: 2rem;
+}
+
+/* Ensure contact info is visible on all pages */
+.app-footer {
+  background-color: #2d3748;
+  color: white;
+  padding: 2rem 0;
+  margin-top: 4rem;
+}
+
+.app-footer .footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.app-footer .contact-section h3 {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.app-footer .contact-section p,
+.app-footer .contact-section a {
+  color: #e2e8f0;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.app-footer .social-media {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.app-footer .social-media a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.app-footer .social-media a:hover {
+  background-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.app-footer .social-media img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
+
+.app-footer .copyright {
+  text-align: center;
+  color: #a0aec0;
+  font-size: 0.875rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #4a5568;
+  margin-top: 2rem;
+}
 :root {
   --primary: #2563eb;
   --primary-dark: #1d4ed8;
