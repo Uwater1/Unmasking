@@ -4,8 +4,7 @@ import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import PropTypes from 'prop-types';
-import { getMPByFedNum } from '../../data/mpData';
-import { fetchAirQuality } from '../../data/airQualityAPI';
+import { getAqhiForRegion, getAqhiColor, AQHI_CATEGORIES, fetchAqhiData } from '../../data/aqhiAPI';
 
 // Fix for default markers in React Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -18,7 +17,17 @@ L.Icon.Default.mergeOptions({
 // Helper component for loading state
 const LoadingSpinner = () => {
   return (
-    <div>Loading...</div>
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '400px',
+      width: '100%',
+      backgroundColor: '#f8f9fa',
+      borderRadius: '8px'
+    }}>
+      <div>Loading AQHI data...</div>
+    </div>
   );
 };
 
@@ -33,68 +42,94 @@ const ErrorMessage = ({ error }) => (
     margin: '20px 0',
     textAlign: 'center'
   }}>
-    <p>Error loading map data: {error}</p>
+    <p>Error loading AQHI data: {error}</p>
     <p>Please try again later or contact support if the problem persists.</p>
   </div>
 );
 
-// Helper component for the party legend
-const PartyLegend = () => (
+// Helper component for the AQHI legend
+const AqhiLegend = () => (
   <div style={{
     position: 'absolute',
     top: '10px',
     right: '10px',
     backgroundColor: 'white',
-    padding: '10px',
-    borderRadius: '4px',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
-    zIndex: 1000
+    padding: '15px',
+    borderRadius: '8px',
+    boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+    zIndex: 1000,
+    maxWidth: '300px'
   }}>
-    <h4 style={{ margin: '0 0 10px 0' }}>Political Parties</h4>
+    <h4 style={{ margin: '0 0 15px 0', fontSize: '16px', fontWeight: 'bold' }}>Air Quality Health Index</h4>
     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
       {[
-        { color: '#d71920', name: 'Liberal' },
-        { color: '#1a4480', name: 'Conservative' },
-        { color: '#f37021', name: 'NDP' },
-        { color: '#3d9b35', name: 'Green' },
-        { color: '#33b2cc', name: 'Bloc Québécois' }
-      ].map(party => (
-        <div key={party.name} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        { range: '1-3', risk: 'Low Risk', color: '#00e400' },
+        { range: '4-6', risk: 'Moderate Risk', color: '#ffff00' },
+        { range: '7-9', risk: 'High Risk', color: '#ff7e00' },
+        { range: '10+', risk: 'Very High Risk', color: '#ff0000' }
+      ].map(category => (
+        <div key={category.range} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <div style={{
-            width: '16px',
+            width: '20px',
             height: '16px',
-            backgroundColor: party.color,
+            backgroundColor: category.color,
             borderRadius: '3px',
-            border: '1px solid rgba(0,0,0,0.1)'
+            border: '1px solid rgba(0,0,0,0.2)'
           }} />
-          <span style={{ fontSize: '14px' }}>{party.name}</span>
+          <span style={{ fontSize: '14px', fontWeight: '500' }}>{category.range}</span>
+          <span style={{ fontSize: '12px', color: '#666' }}>{category.risk}</span>
         </div>
       ))}
+    </div>
+    <div style={{ 
+      marginTop: '10px', 
+      padding: '8px', 
+      backgroundColor: '#f8f9fa', 
+      borderRadius: '4px',
+      fontSize: '11px',
+      color: '#666'
+    }}>
+      Colors show nearest AQHI monitoring station data
     </div>
   </div>
 );
 
 // Helper component for the info panel
-const DistrictInfoPanel = ({ district }) => {
-  const [airQuality, setAirQuality] = useState(null);
+const RegionInfoPanel = ({ region }) => {
+  const [aqhiData, setAqhiData] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!district) return;
+    if (!region) return;
     
     const fetchData = async () => {
       setLoading(true);
       try {
-        const result = await fetchAirQuality(district.name);
-        setAirQuality(result.data);
+        // Calculate center of the region for AQHI lookup
+        const bounds = L.geoJSON(region.feature).getBounds();
+        const center = bounds.getCenter();
+        
+        const result = await getAqhiForRegion(center.lat, center.lng);
+        
+        if (result.success) {
+          setAqhiData(result.data);
+        } else {
+          setAqhiData({
+            aqhi: null,
+            risk: 'No Data',
+            station: 'No nearby station',
+            distance: null,
+            lastUpdated: 'N/A'
+          });
+        }
       } catch (error) {
-        console.error('Error fetching air quality:', error);
-        setAirQuality({
-          index: 0,
-          condition: 'Unknown',
-          location: district.name,
-          lastUpdated: new Date().toLocaleString(),
-          station: 'Error fetching data'
+        console.error('Error fetching AQHI data:', error);
+        setAqhiData({
+          aqhi: null,
+          risk: 'Error',
+          station: 'Failed to fetch data',
+          distance: null,
+          lastUpdated: 'N/A'
         });
       } finally {
         setLoading(false);
@@ -102,9 +137,9 @@ const DistrictInfoPanel = ({ district }) => {
     };
 
     fetchData();
-  }, [district]);
+  }, [region]);
 
-  if (!district) return null;
+  if (!region) return null;
 
   return (
     <div style={{
@@ -112,55 +147,83 @@ const DistrictInfoPanel = ({ district }) => {
       bottom: '20px',
       left: '20px',
       backgroundColor: 'white',
-      padding: '15px',
+      padding: '20px',
       borderRadius: '8px',
-      boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+      boxShadow: '0 2px 15px rgba(0,0,0,0.1)',
       zIndex: 1000,
-      maxWidth: '300px'
+      maxWidth: '350px',
+      border: '1px solid #e0e0e0'
     }}>
-      <h3 style={{ margin: '0 0 10px 0', color: '#333' }}>{district.name}</h3>
-      
-      <div style={{ marginBottom: '15px' }}>
-        <h4 style={{ margin: '0 0 5px 0', fontSize: '14px', color: '#666' }}>
-          Member of Parliament
-        </h4>
-        {district.mp ? (
-          <div>
-            <p style={{ margin: '3px 0', fontWeight: 'bold' }}>{district.mp.name}</p>
-            <p style={{ margin: '3px 0', color: '#666' }}>{district.mp.party}</p>
-            {district.mp.email && (
-              <p style={{ margin: '3px 0', fontSize: '13px' }}>
-                <a href={`mailto:${district.mp.email}`} style={{ color: '#0066cc' }}>
-                  {district.mp.email}
-                </a>
-              </p>
-            )}
-          </div>
-        ) : (
-          <p style={{ margin: '5px 0', color: '#666' }}>No MP information available</p>
-        )}
-      </div>
+      <h3 style={{ margin: '0 0 15px 0', color: '#333', fontSize: '18px' }}>{region.name}</h3>
       
       <div>
-        <h4 style={{ margin: '0 0 5px 0', fontSize: '14px', color: '#666' }}>
-          Air Quality {loading && '(Loading...)'}
+        <h4 style={{ margin: '0 0 10px 0', fontSize: '14px', color: '#666', fontWeight: '600' }}>
+          Air Quality Health Index {loading && '(Loading...)'}
         </h4>
-        {airQuality ? (
+        {aqhiData ? (
           <div>
-            <p style={{ margin: '3px 0' }}>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
               <span style={{
                 display: 'inline-block',
-                width: '12px',
-                height: '12px',
-                backgroundColor: getAirQualityColor(airQuality.index),
+                width: '20px',
+                height: '20px',
+                backgroundColor: aqhiData.aqhi ? getAqhiColor(aqhiData.aqhi) : '#cccccc',
                 borderRadius: '50%',
-                marginRight: '5px'
+                marginRight: '10px',
+                border: '2px solid #fff',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.3)'
               }} />
-              {airQuality.condition}
-            </p>
-            <p style={{ margin: '3px 0', fontSize: '12px', color: '#777' }}>
-              Last updated: {airQuality.lastUpdated}
-            </p>
+              <div>
+                <span style={{ 
+                  fontSize: '24px', 
+                  fontWeight: 'bold', 
+                  color: '#333' 
+                }}>
+                  {aqhiData.aqhi || 'N/A'}
+                </span>
+                <span style={{ 
+                  marginLeft: '10px', 
+                  fontSize: '14px', 
+                  color: '#666',
+                  fontWeight: '500'
+                }}>
+                  {aqhiData.risk}
+                </span>
+              </div>
+            </div>
+            
+            <div style={{ fontSize: '12px', color: '#777', lineHeight: '1.4' }}>
+              <p style={{ margin: '4px 0' }}>
+                <strong>Station:</strong> {aqhiData.station}
+              </p>
+              {aqhiData.distance && (
+                <p style={{ margin: '4px 0' }}>
+                  <strong>Distance:</strong> ~{aqhiData.distance} km
+                </p>
+              )}
+              <p style={{ margin: '4px 0' }}>
+                <strong>Updated:</strong> {aqhiData.lastUpdated}
+              </p>
+            </div>
+
+            {aqhiData.aqhi && AQHI_CATEGORIES[Math.min(10, Math.round(aqhiData.aqhi))] && (
+              <div style={{ 
+                marginTop: '12px', 
+                padding: '10px', 
+                backgroundColor: '#f8f9fa', 
+                borderRadius: '6px',
+                border: '1px solid #e9ecef'
+              }}>
+                <p style={{ 
+                  margin: 0, 
+                  fontSize: '12px', 
+                  color: '#555',
+                  fontStyle: 'italic'
+                }}>
+                  {AQHI_CATEGORIES[Math.min(10, Math.round(aqhiData.aqhi))].description}
+                </p>
+              </div>
+            )}
           </div>
         ) : (
           <p style={{ margin: '5px 0', color: '#666' }}>No air quality data available</p>
@@ -170,38 +233,13 @@ const DistrictInfoPanel = ({ district }) => {
   );
 };
 
-// Helper function to get color based on air quality index
-const getAirQualityColor = (index) => {
-  const colors = [
-    '#00e400', // Good (0-50)
-    '#ffff00', // Moderate (51-100)
-    '#ff7e00', // Unhealthy for Sensitive Groups (101-150)
-    '#ff0000', // Unhealthy (151-200)
-    '#8f3f97', // Very Unhealthy (201-300)
-    '#7e0023'  // Hazardous (301-500)
-  ];
-  
-  return colors[Math.min(Math.floor(index / 50), colors.length - 1)];
-};
-
-// Prop types validation
-DistrictInfoPanel.propTypes = {
-  district: PropTypes.shape({
-    name: PropTypes.string,
-    mp: PropTypes.shape({
-      name: PropTypes.string,
-      party: PropTypes.string,
-      email: PropTypes.string
-    })
-  })
-};
-
 // Main CanadaMap component
 const CanadaMap = () => {
   const [geoData, setGeoData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedDistrict, setSelectedDistrict] = useState(null);
+  const [selectedRegion, setSelectedRegion] = useState(null);
+  const [aqhiData, setAqhiData] = useState({});
   const mapCenter = [56.1304, -106.3468]; // Rough center of Canada
   const mapZoom = 4;
 
@@ -224,61 +262,89 @@ const CanadaMap = () => {
     fetchGeoData();
   }, []);
 
-  // Handle district click
-  const handleDistrictClick = (e) => {
+  // Fetch AQHI data on component mount
+  useEffect(() => {
+    const loadAqhiData = async () => {
+      try {
+        const result = await fetchAqhiData();
+        if (result.success) {
+          setAqhiData(result.data);
+        }
+      } catch (error) {
+        console.error('Error loading AQHI data:', error);
+      }
+    };
+
+    loadAqhiData();
+    // Refresh AQHI data every 30 minutes
+    const interval = setInterval(loadAqhiData, 30 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Handle region click
+  const handleRegionClick = (e) => {
     const layer = e.target;
     const properties = layer.feature?.properties || {};
-    const mp = getMPByFedNum(properties.FEDNUM);
     
-    setSelectedDistrict({
-      name: properties.ENNAME || properties.FEDNAME || 'Unknown District',
+    setSelectedRegion({
+      name: properties.ENNAME || properties.FEDNAME || 'Unknown Region',
       properties,
-      mp
+      feature: layer.feature
     });
   };
 
-  // Style function for districts
-  const getDistrictStyle = (feature) => {
-    const mp = getMPByFedNum(feature.properties.FEDNUM);
-    let color = '#3388ff'; // Default blue
+  // Style function for regions based on AQHI data
+  const getRegionStyle = (feature) => {
+    // Calculate center of the feature to find nearest AQHI station
+    const bounds = L.geoJSON(feature).getBounds();
+    const center = bounds.getCenter();
     
-    if (mp) {
-      switch (mp.party?.toLowerCase()) {
-        case 'liberal': color = '#d71920'; break;
-        case 'conservative': color = '#1a4480'; break;
-        case 'bloc québécois': color = '#33b2cc'; break;
-        case 'new democratic party':
-        case 'ndp': color = '#f37021'; break;
-        case 'green party':
-        case 'green': color = '#3d9b35'; break;
-        default: color = '#808080';
+    // Find nearest AQHI station
+    let nearestAqhi = null;
+    let minDistance = Infinity;
+    
+    Object.values(aqhiData).forEach(station => {
+      if (station.coordinates && station.aqhi !== null) {
+        const stationLat = station.coordinates[1];
+        const stationLng = station.coordinates[0];
+        const distance = Math.sqrt(
+          Math.pow(center.lat - stationLat, 2) + 
+          Math.pow(center.lng - stationLng, 2)
+        );
+        
+        if (distance < minDistance) {
+          minDistance = distance;
+          nearestAqhi = station.aqhi;
+        }
       }
-    }
+    });
+    
+    const color = nearestAqhi ? getAqhiColor(nearestAqhi) : '#cccccc';
     
     return {
       fillColor: color,
       weight: 1,
       opacity: 1,
       color: '#ffffff',
-      fillOpacity: 0.6
+      fillOpacity: 0.7
     };
   };
 
   // Handle feature events
   const onEachFeature = (feature, layer) => {
     layer.on({
-      click: handleDistrictClick,
+      click: handleRegionClick,
       mouseover: (e) => {
         const layer = e.target;
         layer.setStyle({
           weight: 3,
           opacity: 1,
-          fillOpacity: 0.8
+          fillOpacity: 0.9
         });
       },
       mouseout: (e) => {
         const layer = e.target;
-        layer.setStyle(getDistrictStyle(feature));
+        layer.setStyle(getRegionStyle(feature));
       }
     });
   };
@@ -308,32 +374,46 @@ const CanadaMap = () => {
         {geoData && (
           <GeoJSON 
             data={geoData}
-            style={getDistrictStyle}
+            style={getRegionStyle}
             onEachFeature={onEachFeature}
           />
         )}
       </MapContainer>
       
-      <PartyLegend />
-      <DistrictInfoPanel district={selectedDistrict} />
+      <AqhiLegend />
+      <RegionInfoPanel region={selectedRegion} />
       
       <div style={{
         position: 'absolute',
         bottom: '20px',
         left: '50%',
         transform: 'translateX(-50%)',
-        backgroundColor: 'rgba(255, 255, 255, 0.9)',
-        padding: '10px 20px',
+        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+        padding: '12px 24px',
         borderRadius: '20px',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
         zIndex: 1000,
         textAlign: 'center',
-        fontSize: '14px'
+        fontSize: '14px',
+        border: '1px solid #e0e0e0'
       }}>
-        <p style={{ margin: 0 }}>Click on any electoral district to view details</p>
+        <p style={{ margin: 0, fontWeight: '500' }}>Click any region to view AQHI details</p>
       </div>
     </div>
   );
+};
+
+// Prop types validation
+RegionInfoPanel.propTypes = {
+  region: PropTypes.shape({
+    name: PropTypes.string,
+    properties: PropTypes.object,
+    feature: PropTypes.object
+  })
+};
+
+ErrorMessage.propTypes = {
+  error: PropTypes.string.isRequired
 };
 
 export default CanadaMap;
