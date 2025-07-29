@@ -1,7 +1,7 @@
-// src/App.js
+// src/components/Map/MapApp.js
 import React from 'react';
-import CanadaMap from './components/Map/CanadaMap';
-import './styles/map.css';
+import CanadaMap from './CanadaMap';
+import '../../styles/map.css';
 
 function App() {
   return (

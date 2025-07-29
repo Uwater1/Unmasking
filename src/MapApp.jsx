@@ -1,5 +1,5 @@
 import React from 'react';
-import TestComponent from './components/TestComponent';
+import CanadaMap from './components/Map/CanadaMap';
 import './styles/map.css';
 
 function MapApp() {
@@ -19,7 +19,7 @@ function MapApp() {
             <p>Click on any electoral district to see information about your MP and local air quality data.</p>
           </div>
           <div className="map-container">
-            <TestComponent />
+            <CanadaMap />
           </div>
         </section>
       </main>
