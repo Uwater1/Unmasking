@@ -54,30 +54,39 @@ const AqhiLegend = () => (
     top: '10px',
     right: '10px',
     backgroundColor: 'white',
-    padding: '15px',
+    padding: '12px',
     borderRadius: '8px',
     boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
     zIndex: 1000,
-    maxWidth: '300px'
+    maxWidth: '280px',
+    maxHeight: '500px',
+    overflowY: 'auto'
   }}>
     <h4 style={{ margin: '0 0 15px 0', fontSize: '16px', fontWeight: 'bold' }}>Air Quality Health Index</h4>
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
       {[
-        { range: '1-3', risk: 'Low Risk', color: '#00e400' },
-        { range: '4-6', risk: 'Moderate Risk', color: '#ffff00' },
-        { range: '7-9', risk: 'High Risk', color: '#ff7e00' },
-        { range: '10+', risk: 'Very High Risk', color: '#ff0000' }
+        { range: '1', risk: 'Low Risk', color: '#00ff00' },
+        { range: '2', risk: 'Low Risk', color: '#40ff40' },
+        { range: '3', risk: 'Low Risk', color: '#80ff80' },
+        { range: '4', risk: 'Moderate Risk', color: '#ffff00' },
+        { range: '5', risk: 'Moderate Risk', color: '#ffdd00' },
+        { range: '6', risk: 'Moderate Risk', color: '#ffbb00' },
+        { range: '7', risk: 'High Risk', color: '#ff7e00' },
+        { range: '8', risk: 'High Risk', color: '#ff5500' },
+        { range: '9', risk: 'High Risk', color: '#ff3300' },
+        { range: '10', risk: 'Very High Risk', color: '#ff0000' },
+        { range: '10+', risk: 'Very High Risk', color: '#8f3f97' }
       ].map(category => (
-        <div key={category.range} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div key={category.range} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <div style={{
-            width: '20px',
-            height: '16px',
+            width: '16px',
+            height: '14px',
             backgroundColor: category.color,
-            borderRadius: '3px',
+            borderRadius: '2px',
             border: '1px solid rgba(0,0,0,0.2)'
           }} />
-          <span style={{ fontSize: '14px', fontWeight: '500' }}>{category.range}</span>
-          <span style={{ fontSize: '12px', color: '#666' }}>{category.risk}</span>
+          <span style={{ fontSize: '13px', fontWeight: '500', minWidth: '25px' }}>{category.range}</span>
+          <span style={{ fontSize: '11px', color: '#666' }}>{category.risk}</span>
         </div>
       ))}
     </div>

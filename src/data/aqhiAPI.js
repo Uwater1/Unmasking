@@ -44,15 +44,15 @@ const AQHI_STATIONS = {
  * AQHI Risk Categories and Colors
  */
 export const AQHI_CATEGORIES = {
-  1: { risk: 'Low Risk', color: '#00e400', description: 'Ideal air quality for outdoor activities.' },
-  2: { risk: 'Low Risk', color: '#00e400', description: 'Ideal air quality for outdoor activities.' },
-  3: { risk: 'Low Risk', color: '#00e400', description: 'Ideal air quality for outdoor activities.' },
+  1: { risk: 'Low Risk', color: '#00ff00', description: 'Ideal air quality for outdoor activities.' },
+  2: { risk: 'Low Risk', color: '#40ff40', description: 'Ideal air quality for outdoor activities.' },
+  3: { risk: 'Low Risk', color: '#80ff80', description: 'Ideal air quality for outdoor activities.' },
   4: { risk: 'Moderate Risk', color: '#ffff00', description: 'Consider reducing or rescheduling strenuous activities outdoors if you are experiencing symptoms.' },
-  5: { risk: 'Moderate Risk', color: '#ffff00', description: 'Consider reducing or rescheduling strenuous activities outdoors if you are experiencing symptoms.' },
-  6: { risk: 'Moderate Risk', color: '#ffff00', description: 'Consider reducing or rescheduling strenuous activities outdoors if you are experiencing symptoms.' },
+  5: { risk: 'Moderate Risk', color: '#ffdd00', description: 'Consider reducing or rescheduling strenuous activities outdoors if you are experiencing symptoms.' },
+  6: { risk: 'Moderate Risk', color: '#ffbb00', description: 'Consider reducing or rescheduling strenuous activities outdoors if you are experiencing symptoms.' },
   7: { risk: 'High Risk', color: '#ff7e00', description: 'Reduce or reschedule strenuous activities outdoors.' },
-  8: { risk: 'High Risk', color: '#ff7e00', description: 'Reduce or reschedule strenuous activities outdoors.' },
-  9: { risk: 'High Risk', color: '#ff7e00', description: 'Reduce or reschedule strenuous activities outdoors.' },
+  8: { risk: 'High Risk', color: '#ff5500', description: 'Reduce or reschedule strenuous activities outdoors.' },
+  9: { risk: 'High Risk', color: '#ff3300', description: 'Reduce or reschedule strenuous activities outdoors.' },
   10: { risk: 'Very High Risk', color: '#ff0000', description: 'Avoid strenuous activities outdoors.' },
   '10+': { risk: 'Very High Risk', color: '#8f3f97', description: 'Avoid strenuous activities outdoors.' }
 };
